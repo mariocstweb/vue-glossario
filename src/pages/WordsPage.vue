@@ -10,7 +10,11 @@ const endpoint = 'http://localhost:8000/api/words';
 export default {
   name: 'WordsPage',
   components: { AppLoader, WordCard, AppPagination },
-  data: () => ({ words: [], links:[], isLoading: false }),
+  data: () => ({ 
+    words: [],
+    links:[],
+    isLoading: false,
+  }),
   methods: {
     fetchWords(local_url) {
       this.isLoading = true;
@@ -18,7 +22,6 @@ export default {
         .then(res => {
           this.words = res.data.data;
           this.links = res.data['links'];
-          console.log(this.links);
         })
         .catch(err => {
           console.error(err.message);
@@ -36,7 +39,7 @@ export default {
 <template>
     <AppLoader v-if="isLoading" />
 
-    <WordCard v-for="word in words" :key="word.id" :word="word" />
+    <WordCard v-for="word in words" :key="word.id" :word="word"/>
 
     <AppPagination :links="links" @fetchPage="fetchWords" />
 </template>

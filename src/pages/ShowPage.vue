@@ -34,7 +34,6 @@ export default {
       axios.get(endpoint)
         .then(res => {
           this.word = res.data[0];
-          console.log(this.word)
         })
         .catch(err => {
           console.error(err.message);
