@@ -74,6 +74,7 @@ export default {
               </li>
           </ul>
       </div>
+
       <div class="d-flex justify-content-between">
         <div>
           <RouterLink :to="{ name: 'WordsPage'}" class="nav-link">Torna Indietro</RouterLink>
