@@ -13,4 +13,8 @@ export default {
     <WordsPage />
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+h1 {
+  color: white;
+}
+</style>

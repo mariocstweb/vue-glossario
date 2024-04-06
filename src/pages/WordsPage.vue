@@ -40,8 +40,11 @@ export default {
     <AppLoader v-if="isLoading" />
 
     <WordCard v-for="word in words" :key="word.id" :word="word"/>
-
-    <AppPagination :links="links" @fetchPage="fetchWords" />
+    <div class="d-flex justify-content-center">
+      <AppPagination :links="links" @fetchPage="fetchWords" class="pagination"/>    
+    </div>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+
+</style>

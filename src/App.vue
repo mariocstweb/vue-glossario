@@ -29,11 +29,15 @@ export default {
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader class="nav-margin"/>
   <AppLoader v-if="isLoading" />
   <main class="container">
     <RouterView />
   </main>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+main {
+  margin-top: 75px;
+}
+</style>
