@@ -50,34 +50,49 @@ export default {
 </script>
 
 <template>
-    <AppLoader v-if="isLoading" />
+  <AppLoader v-if="isLoading" />
 
-    <!-- Se non sto caricando ed ho dei risultati mostro la WORD -->
-    <div v-if="!isLoading && word" class="container">
-        <h3 class="text-center" v-text="word.title"></h3>
-        <p class="text-center my-3 mt-5">{{ word.description }}</p>
+  <!-- Se non sto caricando ed ho dei risultati mostro la WORD -->
+  <div v-if="!isLoading && word" class="container">
+    <div class="card p-5 my-4">
+      
+      <h3 class="text-center" v-text="word.title"></h3>
+      <p class="text-center my-3 mt-5">{{ word.description }}</p>
+      <div>
+          Links:
+          <ul>
+              <li v-for="link in word.links" :style="{ 'background-color': link.color }">
+                  {{ link.title }}
+              </li>
+          </ul>
+      </div>
+      <div v-if="word.tags">
+          Tags:
+          <ul>
+              <li v-for="tag in word.tags" :style="{ color: tag.color }">
+                  {{ tag.title }}
+              </li>
+          </ul>
+      </div>
+      <div class="d-flex justify-content-between">
         <div>
-            Links:
-            <ul>
-                <li v-for="link in word.links" :style="{ 'background-color': link.color }">
-                    {{ link.title }}
-                </li>
-            </ul>
+          <RouterLink :to="{ name: 'WordsPage'}" class="nav-link">Torna Indietro</RouterLink>
         </div>
-        <div v-if="word.tags">
-            Tags:
-            <ul>
-                <li v-for="tag in word.tags" :style="{ color: tag.color }">
-                    {{ tag.title }}
-                </li>
-            </ul>
-        </div>
-        <div>
+        <div class="text-end">
             Creato il: {{ pubblicationDate }}
         </div>
-
+      </div>
+      
     </div>
+
+  </div>
   
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+
+.nav-link {
+  color: dodgerblue;
+  text-decoration: underline;
+}
+</style>
