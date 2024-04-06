@@ -1,12 +1,14 @@
 <script>
 import axios from 'axios';
-import AppLoader from './components/AppLoader.vue';
-import AppHeader from './components/AppHeader.vue';
+import AppLoader from '../components/AppLoader.vue';
+import WordCard from '../components/WordCard.vue';
+
+
 const endpoint = 'http://localhost:8000/api/words';
 
 export default {
-  name: 'Glossario',
-  components: { AppHeader, AppLoader },
+  name: 'WordsPage',
+  components: { AppLoader, WordCard },
   data: () => ({ words: [], isLoading: false }),
   methods: {
     fetchWords() {
@@ -29,11 +31,9 @@ export default {
 </script>
 
 <template>
-  <AppHeader />
-  <AppLoader v-if="isLoading" />
-  <main class="container">
-    <RouterView />
-  </main>
+    <AppLoader v-if="isLoading" />
+
+    <WordCard v-for="word in words" :key="word.id" :word="word" />
 </template>
 
-<style lang="scss" scoped></style>
+<style></style>

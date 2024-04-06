@@ -1,0 +1,83 @@
+<script>
+import axios from 'axios';
+import AppLoader from '../components/AppLoader.vue';
+
+const baseUri = 'http://localhost:8000/api/words/';
+
+export default {
+  name: 'ShowPage',
+  components: { AppLoader},
+  data: () => ({ word: '', isLoading: false }),
+  computed: {
+      pubblicationDate() {
+          const date = new Date(this.word.created_at);
+
+          let day = date.getDate();
+          let month = date.getMonth() + 1;
+          const year = date.getFullYear();
+          const hours = date.getHours();
+          const minutes = date.getMinutes();
+
+          if (day < 10) day = '0' + day;
+          if (month < 10) month = '0' + month;
+
+          return `${day}/${month}/${year} alle ${hours}:${minutes}`
+      }
+    },
+  methods: {
+    fetchWords() {
+      this.isLoading = true;
+
+      // chiamo l'endpoint dello SHOW dettaglio
+      const slug = this.$route.params.slug;
+      const endpoint = baseUri + slug;
+      axios.get(endpoint)
+        .then(res => {
+          this.word = res.data[0];
+          console.log(this.word)
+        })
+        .catch(err => {
+          console.error(err.message);
+        }).then(() => {
+          this.isLoading = false;
+        });
+    }
+  },
+  created() {
+    this.fetchWords();
+  }
+}
+</script>
+
+<template>
+    <AppLoader v-if="isLoading" />
+
+    <!-- Se non sto caricando ed ho dei risultati mostro la WORD -->
+    <div v-if="!isLoading && word" class="container">
+        <h3 class="text-center" v-text="word.title"></h3>
+        <p class="text-center my-3 mt-5">{{ word.description }}</p>
+        <div>
+            Links:
+            <ul>
+                <li v-for="link in word.links" :style="{ 'background-color': link.color }">
+                    {{ link.title }}
+                </li>
+            </ul>
+        </div>
+        <div v-if="word.tags">
+            Tags:
+            <ul>
+                <li v-for="tag in word.tags" :style="{ color: tag.color }">
+                    {{ tag.title }}
+                </li>
+            </ul>
+        </div>
+        <div>
+            Creato il: {{ pubblicationDate }}
+        </div>
+
+    </div>
+  
+</template>
+
+<style></style>
