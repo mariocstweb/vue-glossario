@@ -32,7 +32,7 @@ export default {
       const endpoint = baseUri + slug;
       axios.get(endpoint)
         .then(res => {
-          this.word = res.data;
+          this.word = res.data[0];
         })
         .catch(err => {
           console.error(err.message);
