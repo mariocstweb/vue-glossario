@@ -8,9 +8,9 @@ export default {
 
 <template>
 
-  
+
   <nav class="navbar bg-body-tertiary justify-space-around">
-    
+
     <div class="container">
 
       <div>
@@ -20,14 +20,14 @@ export default {
           </li>
         </ul>
       </div>
-      
+
       <a class="navbar-brand" href="#">WikiGlossario</a>
 
     </div>
-      
+
   </nav>
 
-  
+
 </template>
 
 
