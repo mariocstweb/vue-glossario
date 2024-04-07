@@ -10,7 +10,7 @@ export default {
 
 <template>
   <h1 class="text-center">Home Page</h1>
-
+  <!--Filtro per titolo della Word-->
   <form class="d-flex justify-content-center flex-wrap my-5 align-items-center" role="search" method="GET">
     <input class="form-control me-2 w-50" type="search" placeholder="Cerca nel glossario...">
 

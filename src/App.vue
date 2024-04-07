@@ -1,16 +1,17 @@
 <script>
 import axios from 'axios';
-import AppLoader from './components/AppLoader.vue';
 import AppHeader from './components/AppHeader.vue';
+import { store } from './data/store';
+
 const endpoint = 'http://localhost:8000/api/words';
 
 export default {
   name: 'Glossario',
-  components: { AppHeader, AppLoader },
-  data: () => ({ words: [], isLoading: false }),
+  components: { AppHeader },
+  data: () => ({ words: [], store }),
   methods: {
     fetchWords() {
-      this.isLoading = true;
+      store.isLoading = true;
       axios.get(endpoint)
         .then(res => {
           this.words = res.words.data;
@@ -18,7 +19,7 @@ export default {
         .catch(err => {
           console.error(err.message);
         }).then(() => {
-          this.isLoading = false;
+          store.isLoading = false;
         });
     }
   },
@@ -30,7 +31,7 @@ export default {
 
 <template>
   <AppHeader class="nav-margin" />
-  <AppLoader v-if="isLoading" />
+  <AppLoader v-if="store.isLoading" />
   <main class="container">
     <RouterView />
   </main>

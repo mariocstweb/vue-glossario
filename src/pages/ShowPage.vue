@@ -1,13 +1,14 @@
 <script>
 import axios from 'axios';
-import AppLoader from '../components/AppLoader.vue';
-
+import { store } from '../data/store';
 const baseUri = 'http://localhost:8000/api/words/';
 
 export default {
   name: 'ShowPage',
-  components: { AppLoader },
-  data: () => ({ word: '', isLoading: false }),
+  data: () => ({
+    word: '',
+    store,
+  }),
   computed: {
     pubblicationDate() {
       const date = new Date(this.word.created_at);
@@ -26,7 +27,7 @@ export default {
   },
   methods: {
     fetchWords() {
-      this.isLoading = true;
+      store.isLoading = true;
       // chiamo l'endpoint dello SHOW dettaglio
       const slug = this.$route.params.slug;
       const endpoint = baseUri + slug;
@@ -37,7 +38,7 @@ export default {
         .catch(err => {
           console.error(err.message);
         }).then(() => {
-          this.isLoading = false;
+          store.isLoading = false;
         });
     }
   },
@@ -48,10 +49,8 @@ export default {
 </script>
 
 <template>
-  <AppLoader v-if="isLoading" />
-
   <!-- Se non sto caricando ed ho dei risultati mostro la WORD -->
-  <div v-if="!isLoading && word" class="container">
+  <div v-if="!store.isLoading && word" class="container">
     <div class="card p-5 my-4">
 
       <h3 class="text-center" v-text="word.title"></h3>
