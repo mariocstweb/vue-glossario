@@ -11,13 +11,20 @@ export default {
 <template>
   <h1 class="text-center">Home Page</h1>
 
-  <form class="d-flex justify-content-center flex-wrap my-5" role="search">
-    <input class="form-control me-2 w-100" type="search" placeholder="Cerca nel glossario...">
+  <form class="d-flex justify-content-center flex-wrap my-5 align-items-center" role="search" method="GET">
+    <input class="form-control me-2 w-50" type="search" placeholder="Cerca nel glossario...">
+    <!--Filtro per Tag-->
+    <!-- <div class="input-group">
+      <select class="form-select" name="type_filter">
+        <option value="">Tutti</option>
+        <option value="{{$type->id}}" @if($type->id == $type_filter) selected @endif>{{ $type -> label }}</option>
+      </select>
+    </div> -->
     <button class="btn my-3" type="submit">Invia ricerca</button>
   </form>
   <div class="separator"></div>
   <div class="spacing">
-    <WordsPage/>
+    <WordsPage />
   </div>
 </template>
 
@@ -38,7 +45,7 @@ h1 {
 
 .spacing {
   margin: 75px 0;
-} 
+}
 
 input {
   height: 50px;
