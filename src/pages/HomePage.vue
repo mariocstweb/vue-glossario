@@ -13,7 +13,7 @@ export default {
 
   <form class="d-flex justify-content-center flex-wrap my-5 align-items-center" role="search" method="GET">
     <input class="form-control me-2 w-50" type="search" placeholder="Cerca nel glossario...">
-    <!--Filtro per Tag-->
+    <!--Filtro per Tage-->
     <!-- <div class="input-group">
       <select class="form-select" name="type_filter">
         <option value="">Tutti</option>
