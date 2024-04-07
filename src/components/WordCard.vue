@@ -42,17 +42,21 @@ export default {
         <div class="d-flex justify-content-around"> <!-- Sezione link e tags -->
 
             <div class="d-flex">
-                <strong>Links: </strong>
-                <span v-for="link in word.links" class="px-3">
-                    {{ link.title }}
-                </span>
+                <div v-if="word.links.length">
+                    <strong>Links: </strong>
+                    <span v-for="link in word.links" class="px-3">
+                        {{ link.title }}
+                    </span>
+                </div>
             </div>
 
             <div v-if="word.tags" class="d-flex">
-                <strong>Tags: </strong>
-                <span v-for="tag in word.tags" :style="{ color: tag.color }" class="px-3">
-                    {{ tag.title }}
-                </span>
+                <div v-if="word.tags.length">
+                    <strong>Tags: </strong>
+                    <span v-for="tag in word.tags" :style="{ color: tag.color }" class="px-3">
+                        {{ tag.title }}
+                    </span>
+                </div>
             </div>
 
         </div>
