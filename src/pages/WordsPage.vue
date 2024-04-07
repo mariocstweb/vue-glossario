@@ -10,9 +10,9 @@ const endpoint = 'http://localhost:8000/api/words';
 export default {
   name: 'WordsPage',
   components: { AppLoader, WordCard, AppPagination },
-  data: () => ({ 
+  data: () => ({
     words: [],
-    links:[],
+    links: [],
     isLoading: false,
   }),
   methods: {
@@ -37,14 +37,14 @@ export default {
 </script>
 
 <template>
-    <h1 class="text-center">Glossario</h1>
+  <h1 class="text-center">Glossario</h1>
 
-    <AppLoader v-if="isLoading" />
+  <AppLoader v-if="isLoading" />
 
-    <WordCard v-for="word in words" :key="word.id" :word="word"/>
-    <div class="d-flex justify-content-center">
-      <AppPagination :links="links" @fetchPage="fetchWords" class="pagination"/>    
-    </div>
+  <WordCard v-for="word in words" :key="word.id" :word="word" />
+  <div class="d-flex justify-content-center">
+    <AppPagination :links="links" @fetchPage="fetchWords" class="pagination" />
+  </div>
 </template>
 
 <style lang="scss" scoped>

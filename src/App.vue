@@ -13,7 +13,7 @@ export default {
       this.isLoading = true;
       axios.get(endpoint)
         .then(res => {
-          this.words = res.data.data;
+          this.words = res.words.data;
         })
         .catch(err => {
           console.error(err.message);
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader class="nav-margin"/>
+  <AppHeader class="nav-margin" />
   <AppLoader v-if="isLoading" />
   <main class="container">
     <RouterView />
