@@ -37,11 +37,20 @@ export default {
 </script>
 
 <template>
+    <h1 class="text-center">Glossario</h1>
+
     <AppLoader v-if="isLoading" />
 
     <WordCard v-for="word in words" :key="word.id" :word="word"/>
-
-    <AppPagination :links="links" @fetchPage="fetchWords" />
+    <div class="d-flex justify-content-center">
+      <AppPagination :links="links" @fetchPage="fetchWords" class="pagination"/>    
+    </div>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+h1 {
+  color: white;
+  margin: 50px 0;
+  padding-top: 30px;
+}
+</style>

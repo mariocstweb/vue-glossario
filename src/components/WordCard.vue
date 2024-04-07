@@ -71,4 +71,7 @@ li {
     margin: 25px 0;
 }
 
+.card {
+    border: 2px solid goldenrod;
+}
 </style>
