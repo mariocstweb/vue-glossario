@@ -36,7 +36,7 @@ export default {
     //Filtro per titolo delle Words
     filteredWords() {
       return this.words.filter(word => {
-        return word.title.toLowerCase().includes(this.searchText.toLowerCase());
+        return word.title.toLowerCase().includes(this.searchText?.toLowerCase());
       });
     }
 
