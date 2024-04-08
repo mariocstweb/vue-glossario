@@ -1,20 +1,33 @@
 <script>
 import axios from 'axios';
-const endpoint = 'http://127.0.0.1:8000/api/contact-message/';
-const defaultForm = { email: '', subject: '', message: '' }
+import FormAlert from '../components/form/FormAlert.vue';
+import { store } from '../data/store';
+const endpoint = 'http://127.0.0.1:8000/api/contact-message';
+const defaultForm = { sender: '', subject: '', message: '' }
 export default {
   name: 'ContactUsPage',
+  components: { FormAlert },
   data: () => ({
     form: defaultForm,
     successMessage: null,
-    errors: {}
+    errors: {},
+    store,
+    isAlertOpen: false,
   }),
   methods: {
     sendForm() {
+      store.isLoading = true;
       axios.post(endpoint, this.form)
         .then(() => { this.form = { ...defaultForm } })
         .catch(err => { console.error(err) })
-        .then(() => { })
+        .then(() => {
+          store.isLoading = false;
+          this.isAlertOpen = true;
+        })
+    },
+    closeAlert() {
+      const alert = document.querySelector('.alert')
+      alert.classList.add('d-none')
     }
   }
 }
@@ -22,6 +35,7 @@ export default {
 
 <template>
   <h1 class="my-5 text-center">Contattaci</h1>
+  <FormAlert v-if="isAlertOpen" @close-button="isAlertOpen = false" />
   <!-- Form Contatti -->
   <form @submit.prevent="sendForm" novalidate>
 
@@ -29,7 +43,7 @@ export default {
     <div class="mb-3">
       <label for="email" class="form-label">La tua email <sup class="text-danger">*</sup></label>
       <input type="email" name="" class="form-control" id="email" placeholder="name@example.com"
-        v-model.trim="form.email" required>
+        v-model.trim="form.sender" required>
       <small class="form-text text-muted">Ti ricontatteremo a questo indirizzo</small>
     </div>
 
