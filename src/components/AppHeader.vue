@@ -23,7 +23,8 @@ export default {
             <RouterLink class="nav-link active" aria-current="page" :to="'/'">Home</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link active" aria-current="page" :to="'/words'">Glossario</RouterLink>
+            <RouterLink class="nav-link active" aria-current="page" :to="{ name: 'ContactUsPage' }">ContactUs
+            </RouterLink>
           </li>
 
         </ul>
