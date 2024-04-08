@@ -74,7 +74,7 @@ export default {
 
       <div class="d-flex justify-content-between">
         <div>
-          <RouterLink :to="{ name: 'WordsPage' }" class="nav-link">Torna Indietro</RouterLink>
+          <RouterLink :to="'/'" class="nav-link">Torna Indietro</RouterLink>
         </div>
         <div class="text-end">
           Creato il: {{ pubblicationDate }}
