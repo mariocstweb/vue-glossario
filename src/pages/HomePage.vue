@@ -4,6 +4,15 @@ import WordsPage from '../pages/WordsPage.vue';
 export default {
   name: 'HomePage',
   components: { WordsPage },
+  data: () => ({
+    searchText: '',
+  }),
+  methods: {
+    handleSubmit() {
+      // passiamo searchText come dato
+      this.$emit('search', this.searchText);
+    }
+  }
 
 }
 </script>
@@ -11,14 +20,15 @@ export default {
 <template>
   <h1 class="text-center">Home Page</h1>
   <!--Filtro per titolo della Word-->
-  <form class="d-flex justify-content-center flex-wrap my-5 align-items-center" role="search" method="GET">
-    <input class="form-control me-2 w-50" type="search" placeholder="Cerca nel glossario...">
+  <form @submit.prevent="handleSubmit" class="d-flex justify-content-center flex-wrap my-5 align-items-center"
+    role="search" method="GET">
+    <input class="form-control me-2 w-50" type="text" placeholder="Cerca nel glossario..." v-model.trim="searchText">
 
     <button class="btn my-3" type="submit">Invia ricerca</button>
   </form>
   <div class="separator"></div>
   <div class="spacing">
-    <WordsPage />
+    <WordsPage :searchText="searchText" />
   </div>
 </template>
 
