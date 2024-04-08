@@ -1,16 +1,36 @@
 <script>
 import WordsPage from '../pages/WordsPage.vue';
+import WordCard from '../components/WordCard.vue';
+
+import axios from 'axios';
+import { store } from '../data/store';
 
 export default {
   name: 'HomePage',
-  components: { WordsPage },
+  components: { WordsPage, WordCard },
   data: () => ({
     searchText: '',
+    endcall: false,
+    words: [],
+    links: [],
+    store,
   }),
   methods: {
-    handleSubmit() {
-      // passiamo searchText come dato
-      this.$emit('search', this.searchText);
+    fetchWords() {
+      const endpoint = `http://localhost:8000/api/words/?filter=${this.searchText}`;
+      store.isLoading = true;
+      axios.get(endpoint)
+        .then(res => {
+          this.words = res.data.data;
+          this.links = res.data['links'];
+          console.log(this.searchText)
+        })
+        .catch(err => {
+          console.error(err.message);
+        }).then(() => {
+          this.endcall = true;
+          store.isLoading = false;
+        });
     }
   }
 
@@ -20,12 +40,20 @@ export default {
 <template>
   <h1 class="text-center">Home Page</h1>
   <!--Filtro per titolo della Word-->
-  <form @submit.prevent="handleSubmit()" class="d-flex justify-content-center flex-wrap my-5 align-items-center"
+  <form @submit.prevent="fetchWords()" class="d-flex justify-content-center flex-wrap my-5 align-items-center"
     role="search" method="GET">
     <input class="form-control me-2 w-50" type="text" placeholder="Cerca nel glossario..." v-model.trim="searchText">
 
     <button class="btn my-3" type="submit">Invia ricerca</button>
   </form>
+  <div class="mb-5">
+    <ul>
+      <WordCard v-for="word in words" :key="word.id" :word="word" />
+    </ul>
+    <div v-if="endcall">
+      <h5 class="text-center text-white">Fine ricerca... Continua con "tutti i termini"</h5>
+    </div>
+  </div>
   <div class="separator"></div>
   <div class="spacing">
     <WordsPage :searchText="searchText" />
@@ -33,6 +61,16 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+.text-white {
+  color: white;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 h1 {
   color: white;
   padding-top: 30px;

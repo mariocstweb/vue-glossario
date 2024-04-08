@@ -9,7 +9,6 @@ const endpoint = `http://localhost:8000/api/words/`;
 export default {
   name: 'WordsPage',
   components: { WordCard, AppPagination },
-  props: { searchText: String },
   data: () => ({
     words: [],
     links: [],
@@ -17,14 +16,11 @@ export default {
   }),
   methods: {
     fetchWords() {
-      //const endpoint = `http://localhost:8000/api/words/?filter=${searchText}`;
-      console.log(this.searchText)
       store.isLoading = true;
       axios.get(endpoint)
         .then(res => {
           this.words = res.data.data;
           this.links = res.data['links'];
-          console.log(this.searchText)
         })
         .catch(err => {
           console.error(err.message);
@@ -52,8 +48,7 @@ export default {
 
 <template>
   <div v-if="!store.isLoading">
-    <h1 class="text-center">Glossario</h1>
-
+    <h1 class="text-center">Glossario: Tutti i termini</h1>
     <WordCard v-for="word in words" :key="word.id" :word="word" />
     <div class="d-flex justify-content-center">
       <AppPagination :links="links" @fetchPage="fetchWords" class="pagination" />
