@@ -40,7 +40,6 @@ export default {
 
 <template>
   <div v-if="!store.isLoading">
-    <h1 class="text-center" v-if="!endcall">Glossario: Tutti i termini</h1>
     <WordCard v-for="word in words" :key="word.id" :word="word" />
     <div class="d-flex justify-content-center">
       <AppPagination :links="links" @fetchPage="fetchWords" class="pagination" />

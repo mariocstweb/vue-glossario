@@ -38,7 +38,7 @@ export default {
 </script>
 
 <template>
-  <h1 class="text-center">Home Page</h1>
+  <h1 class="text-center">Glossario</h1>
   <!--Filtro per titolo della Word-->
   <form @submit.prevent="fetchWords()" class="d-flex justify-content-center flex-wrap my-5 align-items-center"
     role="search" method="GET">
@@ -86,7 +86,7 @@ h1 {
 }
 
 .spacing {
-  margin: 75px 0;
+  margin: 100px 0;
 }
 
 input {
