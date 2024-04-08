@@ -20,7 +20,7 @@ export default {
 <template>
   <h1 class="text-center">Home Page</h1>
   <!--Filtro per titolo della Word-->
-  <form @submit.prevent="handleSubmit" class="d-flex justify-content-center flex-wrap my-5 align-items-center"
+  <form @submit.prevent="handleSubmit()" class="d-flex justify-content-center flex-wrap my-5 align-items-center"
     role="search" method="GET">
     <input class="form-control me-2 w-50" type="text" placeholder="Cerca nel glossario..." v-model.trim="searchText">
 

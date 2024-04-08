@@ -4,8 +4,7 @@ import { store } from '../data/store';
 import WordCard from '../components/WordCard.vue';
 import AppPagination from '../components/AppPagination.vue';
 
-
-const endpoint = 'http://localhost:8000/api/words';
+const endpoint = `http://localhost:8000/api/words/`;
 
 export default {
   name: 'WordsPage',
@@ -17,9 +16,11 @@ export default {
     store,
   }),
   methods: {
-    fetchWords(local_url) {
+    fetchWords() {
+      //const endpoint = `http://localhost:8000/api/words/?filter=${searchText}`;
+      console.log(this.searchText)
       store.isLoading = true;
-      axios.get(local_url ?? endpoint)
+      axios.get(endpoint)
         .then(res => {
           this.words = res.data.data;
           this.links = res.data['links'];
@@ -34,11 +35,11 @@ export default {
   },
   computed: {
     //Filtro per titolo delle Words
-    filteredWords() {
-      return this.words.filter(word => {
-        return word.title.toLowerCase().includes(this.searchText?.toLowerCase());
-      });
-    }
+    // filteredWords() {
+    //   return this.words.filter(word => {
+    //     return word.title.toLowerCase().includes(this.searchText?.toLowerCase());
+    //   });
+    // }
 
 
 
@@ -52,10 +53,7 @@ export default {
 <template>
   <div v-if="!store.isLoading">
     <h1 class="text-center">Glossario</h1>
-    <h2>{{ searchText }}</h2>
-    <ul>
-      <li v-for="word in filteredWords" :key="word.id">{{ word.title }}</li>
-    </ul>
+
     <WordCard v-for="word in words" :key="word.id" :word="word" />
     <div class="d-flex justify-content-center">
       <AppPagination :links="links" @fetchPage="fetchWords" class="pagination" />
