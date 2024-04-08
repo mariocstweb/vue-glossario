@@ -10,8 +10,7 @@ export default {
 
   <nav class="navbar bg-body-tertiary">
     <div class="container">
-      
-      <a class="navbar-brand" href="#">WikiGlossario</a>
+      <RouterLink class="navbar-brand" aria-current="page" :to="'/'">WikiGlossario</RouterLink>
 
       <ul class="d-flex me-auto mb-2 mb-lg-0">
 
