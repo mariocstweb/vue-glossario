@@ -50,13 +50,13 @@ export default {
     <ul>
       <WordCard v-for="word in words" :key="word.id" :word="word" />
     </ul>
-    <div v-if="endcall">
-      <h5 class="text-center text-white">Fine ricerca... Continua con "tutti i termini"</h5>
-    </div>
   </div>
   <div class="separator"></div>
   <div class="spacing">
-    <WordsPage :searchText="searchText" />
+    <div v-if="endcall" class="">
+      <h5 class="text-center text-white">Fine ricerca... continua con tutti i termini</h5>
+    </div>
+    <WordsPage :endcall="endcall" />
   </div>
 </template>
 

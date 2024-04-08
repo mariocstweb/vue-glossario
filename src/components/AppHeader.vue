@@ -45,13 +45,15 @@ export default {
 <style scoped>
 nav {
   background-color: lightgray;
-  border-bottom: 2px solid goldenrod;
+  border-bottom: 2px solid rgba(255, 217, 0, 0.5)enrod;
 
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
 
+  z-index: 3;
 
+  box-shadow: 0px 0px 8px 1px goldenrod;
 }
 </style>

@@ -9,6 +9,9 @@ const endpoint = `http://localhost:8000/api/words/`;
 export default {
   name: 'WordsPage',
   components: { WordCard, AppPagination },
+  props: {
+    endcall: Boolean
+  },
   data: () => ({
     words: [],
     links: [],
@@ -29,17 +32,6 @@ export default {
         });
     }
   },
-  computed: {
-    //Filtro per titolo delle Words
-    // filteredWords() {
-    //   return this.words.filter(word => {
-    //     return word.title.toLowerCase().includes(this.searchText?.toLowerCase());
-    //   });
-    // }
-
-
-
-  },
   created() {
     this.fetchWords();
   }
@@ -48,7 +40,7 @@ export default {
 
 <template>
   <div v-if="!store.isLoading">
-    <h1 class="text-center">Glossario: Tutti i termini</h1>
+    <h1 class="text-center" v-if="!endcall">Glossario: Tutti i termini</h1>
     <WordCard v-for="word in words" :key="word.id" :word="word" />
     <div class="d-flex justify-content-center">
       <AppPagination :links="links" @fetchPage="fetchWords" class="pagination" />
