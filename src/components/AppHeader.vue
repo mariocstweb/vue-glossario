@@ -8,9 +8,9 @@ export default {
 
 <template>
 
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg z-3">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">WikiGlossario</a>
+      <a class="navbar-brand" href="#">BoolGlossario</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -29,10 +29,10 @@ export default {
 
         </ul>
 
-        <form class="d-flex" role="search">
+        <!-- <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Cerca nel glossario...">
           <button class="btn btn-outline-success" type="submit">Cerca </button>
-        </form>
+        </form> -->
       </div>
 
     </div>

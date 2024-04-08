@@ -18,7 +18,6 @@ export default {
 </script>
 
 <template>
-  <h1 class="text-center">Home Page</h1>
   <!--Filtro per titolo della Word-->
   <form @submit.prevent="handleSubmit()" class="d-flex justify-content-center flex-wrap my-5 align-items-center"
     role="search" method="GET">
@@ -33,11 +32,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-h1 {
-  color: white;
-  padding-top: 30px;
-}
-
 .separator {
   border: 1px solid lightgrey;
   position: absolute;
