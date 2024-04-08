@@ -29,10 +29,10 @@ export default {
 
         </ul>
 
-        <form class="d-flex" role="search">
+        <!-- <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Cerca nel glossario...">
           <button class="btn btn-outline-success" type="submit">Cerca </button>
-        </form>
+        </form> -->
       </div>
 
     </div>
